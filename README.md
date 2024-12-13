@@ -1,7 +1,4 @@
 # Azure AI + Vercel AI SDK RAG Template
-_Note: this is an private version of the repo. The public-facing version will be hosted in [Azure Samples]([url](https://github.com/Azure-Samples))_
-_TO-DO: chantge this repo deployment link to this template's link once it is live_
-
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnicoalbanese%2Fai-sdk-rag-template&env=OPENAI_API_KEY&envDescription=You%20will%20need%20an%20OPENAI%20API%20Key.&project-name=ai-sdk-rag&repository-name=ai-sdk-rag&stores=%5B%7B%22type%22%3A%22postgres%22%7D%5D&skippable-integrations=1)
 
