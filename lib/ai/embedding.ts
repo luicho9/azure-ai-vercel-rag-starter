@@ -61,7 +61,7 @@ export const findRelevantContent = async (userQuery: string) => {
   const contentColumn = process.env.AZURE_SEARCH_CONTENT_FIELD!;
   for await (const result of searchResults.results) {
     similarDocs.push({
-      name: (result.document as any).hasOwnProperty(contentColumn) ? (result.document as any)[contentColumn] : result.document, // Use specified content field if available, otherwise use document
+      text: (result.document as any).hasOwnProperty(contentColumn) ? (result.document as any)[contentColumn] : result.document, // Use specified content field if available, otherwise use document
       similarity: result.score,
     });
   }
