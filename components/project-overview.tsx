@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { SearchIcon, VercelIcon } from "./icons";
+import { SearchIcon } from "./icons";
 
 const ProjectOverview = () => {
   return (
@@ -13,12 +13,10 @@ const ProjectOverview = () => {
     >
       <div className="border-2 rounded-lg p-6 flex flex-col gap-4 text-sm text-muted-foreground dark:border-neutral-700 dark:bg-neutral-900">
         <p className="flex flex-row justify-center gap-4 items-center text-foreground">
-          <VercelIcon size={16} />
-          <span>+</span>
           <SearchIcon />
         </p>
         <p>
-          The{" "}
+          Use the Vercel AI SDK's{" "}
           <Link
             href="https://sdk.vercel.ai/docs/reference/ai-sdk-ui/use-chat"
             className="text-blue-500"
@@ -32,18 +30,18 @@ const ProjectOverview = () => {
           >
             streamText
           </Link>{" "}
-          function allows you to build chat applications with retrieval-augmented
-          generation (RAG) capabilities, using Azure AI Search for search
+          function to build chat applications with retrieval-augmented
+          generation (RAG) capabilities, utilizing Azure AI Search for search
           functionality and Azure OpenAI for text and embedding generation.
         </p>
         <p>
-          Learn how to build this project by following this{" "}
+          Deploy your own version of this chatbot {" "}
           <Link
             className="text-blue-500"
-            href="https://sdk.vercel.ai/docs/guides/rag-chatbot"
+            href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAzure-Samples%2Fazure-ai-vercel-rag-starter"
             target="_blank"
           >
-            guide
+            here
           </Link>
           .
         </p>

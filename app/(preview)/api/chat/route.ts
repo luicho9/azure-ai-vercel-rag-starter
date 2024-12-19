@@ -24,6 +24,8 @@ export async function POST(req: Request) {
       If you are unsure, use the getInformation tool and you can use common sense to reason based on the information you do have.
       Use your abilities as a reasoning machine to answer questions based on the information you do have.
 
+      Cite the sources using source ids at the end of the answer text, like 【234d987】, using the id of the source.
+
       Respond "Sorry, I don't know." if you are unable to answer the question using the information provided by the tools.
     `,
       tools: {

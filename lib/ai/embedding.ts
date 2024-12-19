@@ -2,6 +2,7 @@ import { SearchClient, AzureKeyCredential } from "@azure/search-documents";
 import { DefaultAzureCredential } from "@azure/identity";
 import { embed } from "ai";
 import { azure } from "@ai-sdk/azure";
+import { createHash } from "crypto";
 
 const embeddingModel = azure.textEmbeddingModel(process.env.AZURE_EMBEDDING_DEPLOYMENT_NAME!);
 const endpoint = process.env.AZURE_SEARCH_ENDPOINT!;
@@ -60,8 +61,12 @@ export const findRelevantContent = async (userQuery: string) => {
   const similarDocs = [];
   const contentColumn = process.env.AZURE_SEARCH_CONTENT_FIELD!;
   for await (const result of searchResults.results) {
+    const textField = (result.document as any).hasOwnProperty(contentColumn) ? (result.document as any)[contentColumn] : result.document; // Use specified content field if available, otherwise use document
+    const hash = createHash('sha256').update(textField).digest('base64').substring(0, 8); // Create a hash of the text field
+
     similarDocs.push({
-      text: (result.document as any).hasOwnProperty(contentColumn) ? (result.document as any)[contentColumn] : result.document, // Use specified content field if available, otherwise use document
+      text: textField,
+      id: hash, // Add the hash to the object
       similarity: result.score,
     });
   }
