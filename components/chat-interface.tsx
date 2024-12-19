@@ -121,7 +121,7 @@ export default function ChatInterface() {
   return (
     <>
       <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel>
+        <ResizablePanel id="chat-panel">
           <div className="flex flex-col min-w-0 h-screen bg-background">
             <div className="flex flex-row justify-between items-center p-4">
               <ThemeChanger />
@@ -161,7 +161,7 @@ export default function ChatInterface() {
         </ResizablePanel>
         {isLargeScreen && isCitationShown && <ResizableHandle withHandle />}
         {isLargeScreen && isCitationShown && (
-          <ResizablePanel collapsible collapsedSize={0} ref={citationPanelRef} defaultSize={25} className="overflow-y-scroll h-screen">
+          <ResizablePanel id="citation-panel" collapsible collapsedSize={0} ref={citationPanelRef} defaultSize={25} className="overflow-y-scroll h-screen">
             <div className="flex justify-between items-center p-4">
               <h3 className="font-bold">Citation Details:</h3>
               <button 

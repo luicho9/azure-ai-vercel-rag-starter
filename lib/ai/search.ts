@@ -10,11 +10,17 @@ const indexName = process.env.AZURE_SEARCH_INDEX_NAME!;
 const credential = process.env.AZURE_SEARCH_KEY
   ? new AzureKeyCredential(process.env.AZURE_SEARCH_KEY)
   : new DefaultAzureCredential();
+const USER_AGENT_PREFIX = "vercel-nextjs-azs";
 
 const searchClient = new SearchClient(
   endpoint,
   indexName,
-  credential
+  credential,
+  {
+    userAgentOptions: {
+      userAgentPrefix: USER_AGENT_PREFIX,
+    },
+  }
 );
 
 export const generateEmbedding = async (value: string): Promise<number[]> => {
@@ -27,7 +33,6 @@ export const generateEmbedding = async (value: string): Promise<number[]> => {
 };
 
 export const findRelevantContent = async (userQuery: string) => {
-  const userQueryEmbedded = await generateEmbedding(userQuery);
 
   const searchParameters: any = {
     top: 5,
@@ -44,12 +49,13 @@ export const findRelevantContent = async (userQuery: string) => {
 
   // Conditionally add vectorSearchOptions
   if (process.env.AZURE_SEARCH_VECTOR_FIELD) {
+    const userQueryEmbedded = await generateEmbedding(userQuery);
     searchParameters.vectorSearchOptions = {
       queries: [
         {
           kind: "vector",
           fields: [process.env.AZURE_SEARCH_VECTOR_FIELD], // Use the vector field from env vars
-          kNearestNeighborsCount: 4,
+          kNearestNeighborsCount: process.env.AZURE_SEARCH_SEMANTIC_CONFIGURATION_NAME ? 50 : 5,
           vector: userQueryEmbedded,
         },
       ],

@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { SearchIcon } from "./icons";
+import { AzureIcon , VercelIcon} from "./icons";
 
 const ProjectOverview = () => {
   return (
@@ -13,7 +13,9 @@ const ProjectOverview = () => {
     >
       <div className="border-2 rounded-lg p-6 flex flex-col gap-4 text-sm text-muted-foreground dark:border-neutral-700 dark:bg-neutral-900">
         <p className="flex flex-row justify-center gap-4 items-center text-foreground">
-          <SearchIcon />
+          <VercelIcon />
+          +
+          <AzureIcon />
         </p>
         <p>
           Use the Vercel AI SDK's{" "}
