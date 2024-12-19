@@ -1,4 +1,4 @@
-import { findRelevantContent } from "@/lib/ai/embedding";
+import { findRelevantContent } from "@/lib/ai/search";
 import { azure } from "@ai-sdk/azure";
 import { convertToCoreMessages, generateObject, streamText, tool } from "ai";
 import { z } from "zod";
@@ -33,45 +33,18 @@ export async function POST(req: Request) {
           description: `get information from your knowledge base to answer the user's question.`,
           parameters: z.object({
             question: z.string().describe("the users question"),
-            similarQuestions: z.array(z.string()).describe("similar questions to the user's question"),
+            similarQuestions: z.array(z.string()).describe("similar questions to the user's question. generate 3 similar questions to the user's question."),
           }),
-            execute: async ({ similarQuestions }: { similarQuestions: string[] }) => {
-              const results = await Promise.all(
-                similarQuestions.map(
-                  async (question: string) => await findRelevantContent(question),
+          execute: async ({ similarQuestions }: { similarQuestions: string[] }) => {
+            const results = await Promise.all(
+              similarQuestions.map(
+                async (question: string) => await findRelevantContent(question),
                 ),
               );
             const uniqueResults = Array.from(
               new Map(results.flat().map((item) => [item?.text, item])).values(),
             );
             return uniqueResults;
-          },
-        }),
-        understandQuery: tool({
-          description: `understand the users query. use this tool on every prompt.`,
-          parameters: z.object({
-            query: z.string().describe("the users query"),
-            toolsToCallInOrder: z
-              .array(z.string())
-              .describe(
-                "these are the tools you need to call in the order necessary to respond to the users query",
-              ),
-          }),
-          execute: async ({ query }: { query: string }) => {
-            const { object } = await generateObject({
-              model: azure(process.env.AZURE_DEPLOYMENT_NAME!),
-              system:
-                "You are a query understanding assistant. Analyze the user query and generate similar questions.",
-              schema: z.object({
-                questions: z
-                  .array(z.string())
-                  .max(3)
-                  .describe("similar questions to the user's query. be concise."),
-              }),
-              prompt: `Analyze this query: "${query}". Provide the following:
-                      3 similar questions that could help answer the user's query`,
-            });
-            return object.questions;
           },
         }),
       },
