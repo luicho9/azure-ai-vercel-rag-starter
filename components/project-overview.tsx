@@ -35,7 +35,7 @@ const ProjectOverview = () => {
           functionality and Azure OpenAI for text and embedding generation.
         </p>
         <p>
-          Deploy your own version of this chatbot {" "}
+          Deploy your own version of this chatbot{" "}
           <Link
             className="text-blue-500"
             href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAzure-Samples%2Fazure-ai-vercel-rag-starter"
