@@ -68,6 +68,8 @@ Your project should now be running on [http://localhost:3000](http://localhost:3
 ### GitHub Codespaces
 
 You can also run this repo virtually by using GitHub Codespaces, which will open a web-based VS Code in your browser:
+
+
 [![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=brightgreen&logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&skip_quickstart=true&machine=basicLinux32gb&repo=902638490&devcontainer_path=.devcontainer%2Fdevcontainer.json&geo=WestUs2)
 
 # Appendix
