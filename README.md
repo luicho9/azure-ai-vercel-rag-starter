@@ -65,12 +65,11 @@ _Note: see available Azure OpenAI models [here](https://learn.microsoft.com/en-u
 
 Your project should now be running on [http://localhost:3000](http://localhost:3000).
 
-### GitHub Codespaces
-
-You can also run this repo virtually by using GitHub Codespaces, which will open a web-based VS Code in your browser:
-
+### Virtual Dev Environments
 
 [![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=brightgreen&logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&skip_quickstart=true&machine=basicLinux32gb&repo=902638490&devcontainer_path=.devcontainer%2Fdevcontainer.json&geo=WestUs2)
+
+[![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/azure-ai-vercel-rag-starter)
 
 # Appendix
 
