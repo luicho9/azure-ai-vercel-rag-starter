@@ -32,9 +32,13 @@ To get the project up and running, follow these steps:
 
 3. Create prerequisite resources in Azure AI:
 - Azure AI Search index
-  - Optionally create a semantic search configuration and include vector fields in the index (to create a vector-enabled search index, see [here](https://learn.microsoft.com/en-us/azure/search/))
+  - Optionally create a semantic search configuration and include vector fields in the index
+
+_Note: create a vector search index via [REST API](https://learn.microsoft.com/azure/search/search-get-started-vector) or within [Azure Portal](https://learn.microsoft.com/en-us/azure/search/search-get-started-portal-import-vectors?tabs=sample-data-storage%2Cmodel-aoai%2Cconnect-data-storage))_
 - Azure OpenAI Chat model
 - Azure OpenAI Embedding model, if using vector search
+
+_Note: see available Azure OpenAI models [here](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) and deploy them using this [guide](https://learn.microsoft.com/en-us/azure/ai-services/openai/chatgpt-quickstart)_
 
 
 4. Add your Azure OpenAI and Azure AI Search variables to the `.env` file:
