@@ -4,7 +4,7 @@
 
 A [Next.js](https://nextjs.org/) application, powered by the Vercel AI SDK, that uses retrieval-augmented generation (RAG) to reason and respond with information outside of the model's training data.
 
-![azure-vercel-ai-starter](https://github.com/user-attachments/assets/221c4f88-755f-4d6e-9900-449b376a0148)
+![vercel-start3](https://github.com/user-attachments/assets/103d912e-652a-4bf2-b220-2cdf5f758deb)
 
 ## Features
 
