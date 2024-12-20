@@ -16,7 +16,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ input, onInputChange, onSubmit, i
         value={input}
         onChange={onInputChange}
         placeholder="Send a message..."
-        className="flex-1 border-2"
+        className="flex-1 border-2 text-base"
       />
       <Button
         disabled={isLoading || !input}
