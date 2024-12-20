@@ -18,7 +18,7 @@ const ProjectOverview = () => {
           <AzureIcon />
         </p>
         <p>
-          Use the Vercel AI SDK's{" "}
+          Use the Vercel AI SDK&apos;s{" "}
           <Link
             href="https://sdk.vercel.ai/docs/reference/ai-sdk-ui/use-chat"
             className="text-blue-500"
