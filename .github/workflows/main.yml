@@ -1,0 +1,43 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: livedemoapp
+
+    env:
+      AZURE_SEARCH_ENDPOINT: ${{ secrets.AZURE_SEARCH_ENDPOINT }}
+      AZURE_SEARCH_KEY: ${{ secrets.AZURE_SEARCH_KEY }}
+      AZURE_SEARCH_INDEX_NAME: ${{ secrets.AZURE_SEARCH_INDEX_NAME }}
+      AZURE_SEARCH_VECTOR_FIELD: ${{ secrets.AZURE_SEARCH_VECTOR_FIELD }}
+      AZURE_SEARCH_CONTENT_FIELD: ${{ secrets.AZURE_SEARCH_CONTENT_FIELD }}
+      AZURE_SEARCH_SEMANTIC_CONFIGURATION_NAME: ${{ secrets.AZURE_SEARCH_SEMANTIC_CONFIGURATION_NAME }}
+      AZURE_OPENAI_API_ENDPOINT: ${{ secrets.AZURE_OPENAI_API_ENDPOINT }}
+      AZURE_RESOURCE_NAME: ${{ secrets.AZURE_RESOURCE_NAME }}
+      AZURE_DEPLOYMENT_NAME: ${{ secrets.AZURE_DEPLOYMENT_NAME }}
+      AZURE_EMBEDDING_DEPLOYMENT_NAME: ${{ secrets.AZURE_EMBEDDING_DEPLOYMENT_NAME }}
+      AZURE_API_KEY: ${{ secrets.AZURE_API_KEY }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Log in to ACR
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.ACR_REGISTRY }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ${{ secrets.ACR_REGISTRY }}/ragapp:latest
